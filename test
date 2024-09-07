@@ -1,0 +1,177 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
+
+//'What’s your purpose of using VPN?'
+//Hide Browsing History
+//Secure Digital Conversations
+//Encrypt Online Data
+//Mark IP Address
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(
+              left: 16.0, right: 16.0, top: 60.0, bottom: 60.0),
+          child: Canvas(),
+        ),
+      ),
+    );
+  }
+}
+
+class Canvas extends StatelessWidget {
+  //content
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildGradientContainer(),
+                  SizedBox(width: 5),
+
+                  //_buildGradientContainer(),
+                  Container(
+                    width: max(40.0, 120.0),
+                    height: 4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  SizedBox(width: 5),
+
+                  //_buildGradientContainer(),
+                  Container(
+                    width: max(40.0, 120.0),
+                    height: 4,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 40.0),
+                    width: 276,
+                    child: Text(
+                      'What’s your purpose of using VPN?',
+                      style:
+                          TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      _buildTextFieldContainer('🫣  Hide Browsing History'),
+                      _buildTextFieldContainer(
+                          '💬 Secure Digital Conversations'),
+                      _buildTextFieldContainer('🔐  Encrypt Online Data'),
+                      _buildTextFieldContainer('🌐  Mark IP Address'),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(bottom: 270)),
+          //MainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: GradientElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'Continue',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextFieldContainer(String label) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.only(top: 40.0),
+      child: Text(
+        label,
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal),
+        textAlign: TextAlign.left,
+      ),
+    );
+  }
+}
+
+class GradientElevatedButton extends StatelessWidget {
+  final Widget child;
+  final VoidCallback onPressed;
+
+  const GradientElevatedButton(
+      {Key? key, required this.child, required this.onPressed})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0xFF075BD2),
+            Color(0xFF62A3FF),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+      ),
+      width: 1000,
+      height: 54,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+        ),
+        onPressed: onPressed,
+        child: child,
+      ),
+    );
+  }
+}
+
+Widget _buildGradientContainer() {
+  return Container(
+    width: max(40.0, 120.0),
+    height: 4,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(15),
+      gradient: LinearGradient(
+        colors: [
+          Color(0xFF075BD2),
+          Color(0xFF62A3FF),
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    ),
+  );
+}
